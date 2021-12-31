@@ -40,8 +40,17 @@ var rootCmd = &cobra.Command{
     // has an action associated with it:
     Run: func(cmd *cobra.Command, args []string) {
         if len(os.Args)==1{
-            url := "https://news.yahoo.co.jp/categories/domestic"
-            fetch_news(url)
+            url := [7]string{"https://news.yahoo.co.jp/categories/domestic",
+				"https://news.yahoo.co.jp/categories/business",
+				"https://news.yahoo.co.jp/categories/entertainment",
+				"https://news.yahoo.co.jp/categories/sports",
+				"https://news.yahoo.co.jp/categories/world",
+				"https://news.yahoo.co.jp/categories/it",
+				"https://news.yahoo.co.jp/categories/local"}
+
+			for i:=0; i < len(url); i++{
+            	fetch_news(url[i])
+			}
         }
     },
 }
