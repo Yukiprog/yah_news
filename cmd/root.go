@@ -60,7 +60,7 @@ func fetch_news(url string){
     if err != nil {
         panic(err)
     }
-    articles := doc.Find("div.sc-jGFFOr.Pplqh")
+    articles := doc.Find("div.sc-iUpOdG")
     innerarticles:= articles.Find("a")
     innerarticles.Each(func(i int, s *goquery.Selection){
 		attr,_ := s.Attr("href")
