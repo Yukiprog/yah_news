@@ -39,6 +39,7 @@ var rootCmd = &cobra.Command{
     // Uncomment the following line if your bare application
     // has an action associated with it:
     Run: func(cmd *cobra.Command, args []string) {
+		titles:= [7]string{"国内","経済","エンタメ","スポーツ","国際","IT","地域"}
         if len(os.Args)==1{
             url := [7]string{"https://news.yahoo.co.jp/categories/domestic",
 				"https://news.yahoo.co.jp/categories/business",
@@ -49,19 +50,21 @@ var rootCmd = &cobra.Command{
 				"https://news.yahoo.co.jp/categories/local"}
 
 			for i:=0; i < len(url); i++{
-            	fetch_news(url[i])
+				fetch_news(url[i],titles[i])
 			}
         }
     },
 }
 
-func fetch_news(url string){
+func fetch_news(url string,title string){
     doc, err := goquery.NewDocument(url)
     if err != nil {
         panic(err)
     }
+	title_text := Bold(Magenta("=== " + title + " ==="))
     articles := doc.Find("div.sc-iUpOdG")
     innerarticles:= articles.Find("a")
+	fmt.Println(title_text)
     innerarticles.Each(func(i int, s *goquery.Selection){
 		attr,_ := s.Attr("href")
 		fmt.Println(s.Text())
