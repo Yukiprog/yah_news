@@ -62,7 +62,7 @@ func fetch_news(url string,title string){
         panic(err)
     }
 	title_text := Bold(Magenta("=== " + title + " ==="))
-    articles := doc.Find("div.sc-iUpOdG")
+    articles := doc.Find("div.sc-hAcydR.Lrbus")
     innerarticles:= articles.Find("a")
 	fmt.Println(title_text)
     innerarticles.Each(func(i int, s *goquery.Selection){
